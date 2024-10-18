@@ -240,20 +240,20 @@ w(onlyLetters('Questa stringa ha 1, 2, 3, 4 numeri... Anzi no!'))
 */
 console.log('Exercise: ', exercise++)
 // Ci sono decine di modi per verificare se una stringa è un indirizzo di mail valido.
-// Alcuni molto elementari: verificano la sola presenza della @ nella stringa, o della @ e di un punto dopo /...@gmail . com
-// Altri molto complessi: verificano la presenza di caratteri non consentiti, la lunghezza del domnio, la presenza di un
-//                        dominio di terzo livello(es: .com, .it, info) che sia valido anche se ora però ne possono fare
+// Alcuni molto elementari: verificano la sola presenza della @ nella stringa, o della @ e di un punto dopo (...@gmail . com )
+// Altri molto complessi: verificano la presenza di caratteri non consentiti, la lunghezza del dominio, la presenza di un
+//                        dominio di terzo livello che sia valido (es: .com, .it, info) anche se ora però se ne possono fare
 //                        di nuovi tutti i giorni.
 // Io userò una regEx e verificherò:
 //  - la presenza di caratteri non validi;
-//  - la presenza di una stringa prima della @
+//  - la presenza di una stringa di almeno 1 carattere prima della @
 //  - che la stringa fornita abbia almeno 2 caratteri dopo l'ultimo punto
 // Per la verifica ho usato il sito https://regex101.com
-// Perché la regEx: pure essendo un modo apparentemente più complicato mi permette di fare quello che mi piace in efficenza, codice compatto.
+// Perché la regEx: pur essendo un modo apparentemente più complicato mi permette di fare quello che mi piace in efficenza, codice compatto.
 const isThisAnEmail = (string) =>
   /^[a-z0-9.]{1,64}@[a-z0-9.]{3,64}[a-z0-9]{2}$/i.test(string)
 w(isThisAnEmail('lorenz@lolloland.com')) // true
-w(isThisAnEmail('nerio@yahoo.u')) // fale
+w(isThisAnEmail('nerio@yahoo.u')) // false
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
@@ -308,7 +308,10 @@ console.log('Exercise: ', exercise++)
 // ovvero Date o string, scelgo arbitratiamente.
 // Siccome Date.Now() usa i milli secondi Unix Epoch uso .getTime e poi moltiplico per i secondi in un giorno
 const howManyDays = (fromDate) =>
-  (Date.now() - new Date(fromDate).getTime()) / (1000 * 60 * 60 * 24)
+  // Arrotondo al giorno
+  Math.floor(
+    (Date.now() - new Date(fromDate).getTime()) / (1000 * 60 * 60 * 24) A
+  )
 w(howManyDays('2024-01-01'))
 
 /* ESERCIZIO 10

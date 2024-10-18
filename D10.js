@@ -310,7 +310,7 @@ console.log('Exercise: ', exercise++)
 const howManyDays = (fromDate) =>
   // Arrotondo al giorno
   Math.floor(
-    (Date.now() - new Date(fromDate).getTime()) / (1000 * 60 * 60 * 24) A
+    (Date.now() - new Date(fromDate).getTime()) / (1000 * 60 * 60 * 24)
   )
 w(howManyDays('2024-01-01'))
 

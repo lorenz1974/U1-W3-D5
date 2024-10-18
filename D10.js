@@ -423,36 +423,74 @@ w(removeIndex(13, movies))
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
 console.log('Exercise: ', exercise++)
+const container = document.getElementById('container')
+w(container)
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 console.log('Exercise: ', exercise++)
+const getTD = () => {
+  const tds = document.getElementsByTagName('td')
+  return tds
+}
+w(getTD())
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
 console.log('Exercise: ', exercise++)
+const printTDS = (tds) => {
+  for (let i = 0; i < tds.length; i++) {
+    w(tds[i].innerText)
+  }
+}
+printTDS(getTD())
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
 console.log('Exercise: ', exercise++)
+const redBackgroundForAllA = () => {
+  const allA = document.getElementsByTagName('a')
+  for (let i = 0; i < allA.length; i++) {
+    allA[i].style.background = 'red'
+  }
+}
+redBackgroundForAllA()
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
 console.log('Exercise: ', exercise++)
+const addToMyList = (liText) => {
+  const myList = document.getElementById('myList')
+  const li = document.createElement('li')
+  li.innerText = liText
+  myList.appendChild(li)
+}
+addToMyList('Belgio')
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 console.log('Exercise: ', exercise++)
+const emptyLi = () => {
+  const myList = document.querySelector('#myList')
+  myList.innerHTML = ''
+}
+emptyLi()
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
 console.log('Exercise: ', exercise++)
+const addClassToTDS = (tds) => {
+  for (let i = 0; i < tds.length; i++) {
+    tds[i].classList.add('test')
+  }
+}
+addClassToTDS(getTD())
 
 // [EXTRA] JS Avanzato
 
@@ -468,6 +506,14 @@ console.log('Exercise: ', exercise++)
 
 */
 console.log('Exercise: ', exercise++)
+const halfTree = (levels) => {
+  let levelSting = ''
+  for (let i = 1; i <= levels; i++) {
+    levelSting += '*'
+    w(levelSting)
+  }
+}
+halfTree(6)
 
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
@@ -481,8 +527,49 @@ console.log('Exercise: ', exercise++)
 
 */
 console.log('Exercise: ', exercise++)
+const tree = (levels) => {
+  // La'lgoritmo lavora dall'alto in basso, quindi ovviamente prima devo creare la sommità dell'albero e poi scendo man mano
+  // Parto con un loop su tutto i livelli dal 1 (il più in alto) a quello più in basso (fornito da levels)
+  // for (let level = 1; level <= levels; level++) {
+  // // Prende un numero di spazi pari al livello (es 1) fino al numero dei livelli -1 (es 4)
+  // let spacesString = ''
+  // for (let spaces = level; spaces < levels; spaces++) {
+  //   //spaces += j.toString() // check di controllo
+  //   spacesString += ' '
+  // }
+  // // Prendo un numero di asterisci pari al doppio del numero dei livelli - 1
+  // let asteriscsString = ''
+  // for (let asteriscs = 1; asteriscs <= 2 * level - 1; asteriscs++) {
+  //   asteriscsString += '*'
+  // }
+  // w(spacesString + asteriscsString)
+  // }
+
+  // ... e dopo aver scritto tutta questap pippa, ho scopert la funzione repeat!!!
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+  for (let level = 0; level <= levels; level++) {
+    let spacesString = ''
+    let asteriscsString = ''
+    spacesString = ' '.repeat(levels - level + 1)
+    asteriscsString = '*'.repeat(level * 2 + 1)
+    w(spacesString + asteriscsString)
+  }
+}
+tree(3)
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
+// la definizione di numero primo dice che un numero per essere tale deve essere divisibile solo per se stesso e per uno.
+// Senza andare a scomodare la teoria dei numeri primi, uso l'algoritmo meno efficiente del mondo per calcolarlo, ovvero prendo 'n'
+// e verifico se è divisibile per tutti i numeri più piccoli di lui.
 console.log('Exercise: ', exercise++)
+const isItPrime = (n) => {
+  for (let i = 2; i < n; i++) {
+    // w(i)
+    if (n % i === 0) {
+      return false
+    }
+  }
+}
+w(isItPrime(9))

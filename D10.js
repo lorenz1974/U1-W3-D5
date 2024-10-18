@@ -571,5 +571,6 @@ const isItPrime = (n) => {
       return false
     }
   }
+  return true
 }
-w(isItPrime(9))
+w(isItPrime(17))
